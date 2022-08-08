@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.a068d468.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/CDRI FP 2022-23 Calendar and QPR Schedule.pdf": "/static/media/CDRI FP 2022-23 Calendar and QPR Schedule.78a7db31fdca69a05618.pdf",
+    "static/media/Fellowship programe - Utilization Certificate.docx": "/static/media/Fellowship programe - Utilization Certificate.44d089c2256dddff0b96.docx",
+    "static/media/No PE Certificate.docx": "/static/media/No PE Certificate.48256c64d6263ddfbc73.docx",
+    "static/media/Form 10F.pdf": "/static/media/Form 10F.a3fcb0430110e42fbe50.pdf",
+    "index.html": "/index.html",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.a068d468.js.map": "/static/js/main.a068d468.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.a068d468.js"
+  ]
+}
