@@ -259,6 +259,29 @@ class QprController extends Qpr {
     )
   }
 
+  projectGanttChartDelete = (req:any, res:any) => {
+    let table = "project_gantt_chart";
+    this.getData({ table: table, where: "id=?", args: [req.params.pgc_id] }).then((rslt: any) => {
+      let pgc = rslt[0];
+      let fs = require('fs');
+      fs.unlinkSync(UPLOAD_PATH+pgc.chart);
+
+      this.deleteData({table: table, where: {args: [req.params.pgc_id] }, get_where: {qpr_id: req.params.qpr_id}})
+      .then((rslt: any) => {
+        res.status(200).json({ 
+          status: 1,
+          msg: "Submitted successfully",
+          type: "success",
+          data: {pgc: rslt}
+        });
+      },
+      (err: any) => new ErrorException({msg: err}, res)
+      )
+    },
+    (err: any) => new ErrorException({msg: err}, res)
+    );
+  }
+
   submit = (req:any, res:any) => {
     let fields = this.fields.slice(0, -2);
     req = {input: req.body, id: req.params.qpr_id, select: fields};
@@ -274,19 +297,6 @@ class QprController extends Qpr {
     (err: any) => new ErrorException({msg: err}, res)
     )
   }
-
-  // deleteUser = async (parent, req, context) => {
-  //   try {
-  //     await authController.getData(context);
-  //     return this.deleteData(req).then(data => data);
-  //   } catch (e) {
-  //     if(e.name != "CustomError") {
-  //       notify.sendMail(e.message);
-  //       e.message = "Something went wrong";
-  //     }
-  //     return new Error(e.message);
-  //   }
-  // }
 }
 
 export = new QprController;

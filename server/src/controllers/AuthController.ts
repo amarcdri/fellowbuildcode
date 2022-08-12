@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 class AuthController extends User {
   constructor() {
     super();
+    this.environment = process.env.environment;
     this.token_Key = process.env.TOKEN_KEY;
   }
 
@@ -88,7 +89,7 @@ class AuthController extends User {
       });
     } catch (e: any) {
       if(e.name != "CustomError") {
-        e.message = "Something went wrong";
+        e.message = this.environment == "production"? "Something went wrong": e.message;
       }
       return res.status(401).json({ 
         status: 0,

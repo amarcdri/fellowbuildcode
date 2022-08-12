@@ -101,7 +101,7 @@ class Query extends DBConnect {
     return rslt;
   }
 
-  deleteData = async (req: any) => {
+  deleteData1 = async (req: any) => {
     let table = req.table? req.table: this.table;
     let where_fields = req.where.fields? req.where.fields: "id = ?";
     let query = "DELETE FROM " + table + " WHERE "+where_fields;
@@ -110,6 +110,24 @@ class Query extends DBConnect {
       return false;
     }
     return true;
+  }
+
+  deleteData = (req: any) => {
+    let table = req.table? req.table: this.table;
+    let where_fields = req.where.fields? req.where.fields: "id = ?";
+    let query = "DELETE FROM " + table + " WHERE "+where_fields;
+    let rslt = this.queryDB(query, req.where.args).then(
+      (val: any) => {
+        if (val.affectedRows > 0) {
+          return this.getData({
+            table: table,
+            where: req.get_where.where,
+            args: req.get_where.args
+          });
+        }
+      }
+    );
+    return rslt;
   }
 }
 

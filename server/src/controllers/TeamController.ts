@@ -2,8 +2,8 @@ import ErrorException from '../error/ErrorException';
 import Team from '../models/Team';
 
 class TeamController extends Team {
-  list = (req:any, res:any) => {
-    this.getData({ select: 'a.*, b.CountryName as country_name', join: ' JOIN countries b on a.country_id = b.id', where: 'user_id = ?', other: 'ORDER BY name ASC', args: [req.auth.id] }).then((rslt: any) => {
+  list = async (req:any, res:any) => {
+    await this.getData({ select: 'a.*, b.CountryName as country_name', join: ' JOIN countries b on a.country_id = b.id', where: 'user_id = ?', other: 'ORDER BY name ASC', args: [req.auth.id] }).then((rslt: any) => {
       res.status(200).json({ 
         status: 1,
         data: {list: rslt}
